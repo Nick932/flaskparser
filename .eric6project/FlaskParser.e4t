@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-5.1.dtd">
 <!-- eric6 tasks file for project FlaskParser -->
-<!-- Saved: 2020-08-03, 23:12:23 -->
+<!-- Saved: 2020-08-03, 23:34:12 -->
 <Tasks version="5.1">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="2">
@@ -16,7 +16,7 @@
   <Task priority="1" completed="False" type="2">
     <Summary>WARNING: uncompleted</Summary>
     <Description></Description>
-    <Created>2020-08-03, 23:12:20</Created>
+    <Created>2020-08-03, 23:34:09</Created>
     <Resource>
       <Filename>parsingapp.py</Filename>
       <Linenumber>49</Linenumber>

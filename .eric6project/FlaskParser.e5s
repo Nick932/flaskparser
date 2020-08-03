@@ -2,14 +2,14 @@
 <!DOCTYPE Session SYSTEM "Session-5.0.dtd">
 <!-- eric6 session file for project FlaskParser -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2020-07-31, 20:00:19 -->
+<!-- Saved: 2020-08-03, 23:34:54 -->
 <Session version="5.0">
   <Filenames>
-    <Filename cline="9" cindex="0" folds="" zoom="1">/home/nickel/dev/Tests/TimeWeb/scrapper.py</Filename>
-    <Filename cline="21" cindex="8" folds="" zoom="1">/home/nickel/dev/Tests/TimeWeb/dbinterface.py</Filename>
-    <Filename cline="91" cindex="0" folds="" zoom="1">/home/nickel/dev/Tests/TimeWeb/parsingapp.py</Filename>
+    <Filename cline="6" cindex="4" folds="" zoom="1">/home/nickel/dev/Tests/TimeWeb/parsingapp.py</Filename>
+    <Filename cline="14" cindex="0" folds="" zoom="1">/home/nickel/dev/Tests/TimeWeb/tools.py</Filename>
+    <Filename cline="1" cindex="1" folds="" zoom="1">/home/nickel/dev/Tests/TimeWeb/celeryapp_settings.py</Filename>
   </Filenames>
-  <ActiveWindow cline="91" cindex="0">/home/nickel/dev/Tests/TimeWeb/parsingapp.py</ActiveWindow>
+  <ActiveWindow cline="6" cindex="4">/home/nickel/dev/Tests/TimeWeb/parsingapp.py</ActiveWindow>
   <Breakpoints/>
   <Watchexpressions/>
   <DebugInfo>
@@ -27,14 +27,13 @@
   <Bookmarks/>
   <ProjectBrowserStates>
     <ProjectBrowserState name="sources">
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parser-api</ExpandedItemName>
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parser-api/parsingapp.py</ExpandedItemName>
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parser-api/parsingapp.py@@7</ExpandedItemName>
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/dbinterface.py</ExpandedItemName>
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/dbinterface.py@@3</ExpandedItemName>
+      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/celeryapp_settings.py</ExpandedItemName>
+      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/celeryapp_settings.py@@4</ExpandedItemName>
       <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parsingapp.py</ExpandedItemName>
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parsingapp.py@@14</ExpandedItemName>
-      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parsingapp.py@@41</ExpandedItemName>
+      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/parsingapp.py@@Globals</ExpandedItemName>
+      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/tools.py</ExpandedItemName>
+      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/tools.py@@30</ExpandedItemName>
+      <ExpandedItemName>/home/nickel/dev/Tests/TimeWeb/tools.py@@16</ExpandedItemName>
     </ProjectBrowserState>
     <ProjectBrowserState name="forms"/>
     <ProjectBrowserState name="resources"/>
