@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project FlaskParser -->
-<!-- Saved: 2020-07-31, 17:34:49 -->
+<!-- Saved: 2020-08-02, 16:31:50 -->
 <!-- Copyright (C) 2020 Nick, kanah932@gmail.com -->
 <Project version="5.1">
   <Language></Language>
@@ -12,9 +12,9 @@
   <Version>0.1</Version>
   <Author>Nick</Author>
   <Email>kanah932@gmail.com</Email>
+  <Eol index="-1"/>
   <Sources>
     <Source>scrapper.py</Source>
-    <Source>parser-api/parsingapp.py</Source>
     <Source>__init__.py</Source>
     <Source>dbinterface.py</Source>
     <Source>parsingapp.py</Source>
