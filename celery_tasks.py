@@ -3,6 +3,12 @@ from tools import Scrapper, DataWriter, ArchiveCreator, status
 from celery_settings import celery
 import os
 
+
+
+ARCHIVE_TYPE = 'zip'
+
+
+
 @celery.task
 def scrapping(uri):
     '''
@@ -24,11 +30,10 @@ def scrapping(uri):
     
     writer = DataWriter(path=path)
     filename = 'task_data_'+my_id
-    print('#'*8)
-    print(data.__class__)
     writer.write(data, filename)
     
-    archivator = ArchiveCreator()
+    global ARCHIVE_TYPE
+    archivator = ArchiveCreator(archive_type = ARCHIVE_TYPE)
     archivator.pack(filename+writer.filetype, filename)
     
     where_clause = 'id="{0}"'.format(my_id) #NOTE: client mustn't know that quotes should be used?

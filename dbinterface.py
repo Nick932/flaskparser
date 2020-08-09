@@ -3,22 +3,33 @@ Implements a database interface with the Database class.
 '''
 
 import sqlite3
+from functools import wraps
 
 
-
-def connect_to(dbname):
+def connect_to_database(method):
     
-    def wrapper(func):
-        def onCall(*args, **kwargs):
-            connection = sqlite3.connect(dbname)
-            cursor = connection.cursor()
-            command = func(*args, **kwargs)
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        
+        dbname = self.database_name
+        print('Connection opened.')
+        connection = sqlite3.connect(dbname)
+        cursor = connection.cursor()
+        command = method(self, *args, **kwargs)
+        print('Command to the database:\n', command)
+        
+        try:
             cursor.execute(command)
             connection.commit()
-            connection.close()
-        return onCall
-    return wrapper
+        except sqlite3.OperationalError as exception:
+            print('Exception!', exception) #TODO: LOGGING!
+            pass
+        else:
+            print('Command executed successfully.')
+        connection.close()
+        print('Connection closed.')
 
+    return wrapper
 
 
 class Database:
@@ -49,10 +60,8 @@ class Database:
         cursor = connection.cursor()
         return connection, cursor
         
-    
+    @connect_to_database
     def create_table(self, table_name:str, atr_names:list, atr_types:list):
-        
-        connection, cursor = self.connect(self.database_name)
         
         columns_list = list(zip(atr_names, atr_types))
         table_command = 'create table {0}('.format(table_name)
@@ -61,23 +70,15 @@ class Database:
             column = str(column[0])+' '+str(column[1])+', '
             table_command+=column
         table_command = self._command_format(table_command)
-        try:
-            cursor.execute(table_command)
-            connection.commit()
-        except sqlite3.OperationalError as exception:
-            print('Exception!', exception) #TODO: LOGGING!
-            pass
-            
-            
+        return table_command
+
+    @connect_to_database
     def insert(self, table_name:str, *values):
         
-        connection, cursor = self.connect(self.database_name)
         values_tuple = tuple(values)
-        valcount = '?,'*len(values_tuple)
-        insert_command = "insert into {0} values({1})".format(table_name, valcount)
-        insert_command = self._command_format(insert_command)
-        cursor.execute(insert_command, values_tuple)
-        connection.commit()
+        insert_command = "insert into {0} values {1}".format(table_name, values_tuple)
+        return insert_command
+        
         
         
     def select(self, table_name:str, atributes='*', where_clause=None):
@@ -92,16 +93,17 @@ class Database:
                             
         cursor.execute(select_command)
         results = cursor.fetchall()
+        connection.close()
         return results
         
         
+        
+    @connect_to_database
     def update(self, table_name:str, atribute:str, value,  where_clause:str):
         
         value = '"{0}"'.format(value) #NOTE: what if value is integer?
         connection, cursor = self.connect(self.database_name)
         update_command = 'update {0} set {1}={2} where {3}'.format(table_name, 
                             atribute, value, where_clause)
-        print(update_command)
-        cursor.execute(update_command)
-        connection.commit()
+        return update_command
     

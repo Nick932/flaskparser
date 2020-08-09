@@ -2,7 +2,7 @@ from flask import jsonify, abort, make_response, send_file,  url_for
 from tools import status
 from dbtable import scrappy_database as db
 import celery_settings
-from celery_tasks import scrapping
+from celery_tasks import scrapping, ARCHIVE_TYPE
 from flask_app_settings import parsapp
 import sys
 
@@ -81,7 +81,7 @@ def download(filename):
     '''
     Sends the designated file.
     '''
-    return send_file(filename, as_attachment=True)
+    return send_file(filename+'.'+ARCHIVE_TYPE, as_attachment=True)
 
 
 if __name__ == '__main__':
