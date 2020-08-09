@@ -18,18 +18,22 @@ status = Status
 class ArchiveCreator:
     
     
-    def __init__(self, archive_type = 'zip'):
+    def __init__(self, archive_type = 'zip', archive_folder = 'archives'):
         
-        self.path_to_cwd = os.getcwd()+os.sep
+        cwd = os.getcwd()+os.sep
+        try:
+            os.mkdir(cwd+archive_folder)
+        except FileExistsError:
+            pass
+        self.path_to_archive = cwd+archive_folder+os.sep
         self.archive_type = archive_type
         
         
     def pack(self, file_to_archive:str, archive_name:str):
-        
-        data_file_name = file_to_archive
+        #FIXME: problem with archive content.
         archive_file = archive_name+'.'+self.archive_type
         data_archive = zipfile.ZipFile(archive_file, 'w')
-        data_archive.write(data_file_name, compress_type = zipfile.ZIP_DEFLATED)
+        data_archive.write(file_to_archive, compress_type = zipfile.ZIP_DEFLATED)
         data_archive.close()
 
 
@@ -54,14 +58,20 @@ class Scrapper:
 class DataWriter:
     
     
-    def __init__(self, path, filetype = '.txt'):
-        self.path = path
-        self.filetype = filetype
+    def __init__(self, file_folder = 'files', file_type = '.txt'):
+        
+        cwd = os.getcwd()+os.sep
+        try:
+            os.mkdir(cwd+file_folder)
+        except FileExistsError:
+            pass
+        self.path = cwd+file_folder+os.sep
+        self.filetype = file_type
 
 
     def write(self, data:str, filename:str):
         
-        datafile = self.path+os.sep+filename+self.filetype
+        datafile = self.path+filename+'.'+self.filetype
         file = open(datafile, 'w')
         file.write(data)
         file.close()

@@ -1,12 +1,19 @@
 from flask import jsonify, abort, make_response, send_file,  url_for
 from tools import status
-from dbtable import scrappy_database as db
+import dbtables
 import celery_settings
-from celery_tasks import scrapping, ARCHIVE_TYPE
+from celery_tasks import scrapping
 from flask_app_settings import parsapp
-import sys
+import sys, os
+
+db = dbtables.scrappy_database
 
 celery = celery_settings.celery
+
+FILE_TYPE = 'txt'
+FILE_DIR = 'files1'
+ARCHIVE_DIR = 'archives1'
+ARCHIVE_TYPE = 'zip'
 
 
 
@@ -46,7 +53,7 @@ def get_task(task_id):
         
     task_status = task_attrs[2]
     if task_status == status.done.value:
-        name = 'task_data_{0}'.format(task_id)
+        name = task_id
         url = url_for('download', filename = name, _external = True)
         return jsonify({'url_to_download': url}), 200
     else:
@@ -64,7 +71,12 @@ def create_task(url_to_parse):
     if not url_to_parse:
         abort(400)
     
-    task = scrapping.apply_async(args=(url_to_parse, ))
+    task = scrapping.apply_async(args=(
+                                    url_to_parse, 
+                                    ARCHIVE_TYPE, 
+                                    ARCHIVE_DIR, 
+                                    FILE_TYPE, 
+                                    FILE_DIR,))
     id = task.id
     return jsonify({'task_id': id}), 201
 
@@ -81,7 +93,7 @@ def download(filename):
     '''
     Sends the designated file.
     '''
-    return send_file(filename+'.'+ARCHIVE_TYPE, as_attachment=True)
+    return send_file(ARCHIVE_DIR+os.sep+filename+'.'+ARCHIVE_TYPE, as_attachment=True)
 
 
 if __name__ == '__main__':

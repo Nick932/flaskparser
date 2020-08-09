@@ -7,15 +7,22 @@ from functools import wraps
 
 
 def connect_to_database(method):
-    
+    '''
+    Implements the context manager of database connection for 
+    methods, that return a database command.
+    Executes the method with given arguments, executes the command 
+    and closes the connection to the database.
+    '''
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         
         dbname = self.database_name
+        #TODO: LOGGING!
         print('Connection opened.')
         connection = sqlite3.connect(dbname)
         cursor = connection.cursor()
         command = method(self, *args, **kwargs)
+        #TODO: LOGGING!
         print('Command to the database:\n', command)
         
         try:
@@ -25,8 +32,10 @@ def connect_to_database(method):
             print('Exception!', exception) #TODO: LOGGING!
             pass
         else:
+            #TODO: LOGGING!
             print('Command executed successfully.')
         connection.close()
+        #TODO: LOGGING!
         print('Connection closed.')
 
     return wrapper
@@ -60,6 +69,7 @@ class Database:
         cursor = connection.cursor()
         return connection, cursor
         
+        
     @connect_to_database
     def create_table(self, table_name:str, atr_names:list, atr_types:list):
         
@@ -70,7 +80,9 @@ class Database:
             column = str(column[0])+' '+str(column[1])+', '
             table_command+=column
         table_command = self._command_format(table_command)
+        print(table_command)
         return table_command
+
 
     @connect_to_database
     def insert(self, table_name:str, *values):
@@ -78,7 +90,6 @@ class Database:
         values_tuple = tuple(values)
         insert_command = "insert into {0} values {1}".format(table_name, values_tuple)
         return insert_command
-        
         
         
     def select(self, table_name:str, atributes='*', where_clause=None):
@@ -97,12 +108,10 @@ class Database:
         return results
         
         
-        
     @connect_to_database
     def update(self, table_name:str, atribute:str, value,  where_clause:str):
         
         value = '"{0}"'.format(value) #NOTE: what if value is integer?
-        connection, cursor = self.connect(self.database_name)
         update_command = 'update {0} set {1}={2} where {3}'.format(table_name, 
                             atribute, value, where_clause)
         return update_command
