@@ -8,22 +8,10 @@ import enum
 
 @enum.unique
 class Status(enum.Enum):
-    complete = 'cmplt'
-    failed = 'fld'
+    done = 'Done'
+    in_progress = 'In progress'
 
-
-
-class Task_id:
-    
-    
-    def __init__(self):
-        self.id = 0
-        
-        
-    def generate(self):
-        task_id = self.id
-        self.id+=1
-        return task_id
+status = Status
 
 
 

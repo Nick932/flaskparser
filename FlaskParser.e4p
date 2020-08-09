@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-5.1.dtd">
 <!-- eric project file for project FlaskParser -->
-<!-- Saved: 2020-08-03, 23:34:49 -->
+<!-- Saved: 2020-08-09, 16:04:44 -->
 <!-- Copyright (C) 2020 Nick, kanah932@gmail.com -->
 <Project version="5.1">
   <Language></Language>
@@ -22,7 +22,10 @@
     <Source>celery_test.py</Source>
     <Source>delete.py</Source>
     <Source>tools.py</Source>
-    <Source>celeryapp_settings.py</Source>
+    <Source>celery_settings.py</Source>
+    <Source>celery_tasks.py</Source>
+    <Source>dbtable.py</Source>
+    <Source>flask_app_settings.py</Source>
   </Sources>
   <Forms/>
   <Translations/>
