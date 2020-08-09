@@ -1,5 +1,8 @@
 from celery import Celery
-#import os
+import os
+from flask_app_settings import parsapp
+
+
 
 def make_celery(app, loglevel = 'info'):
 
@@ -19,3 +22,7 @@ def make_celery(app, loglevel = 'info'):
     celery.Task = ContextTask
     
     return celery
+
+
+
+celery = make_celery(parsapp)
