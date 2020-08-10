@@ -1,5 +1,6 @@
-# Flask parsing api.
+# Flask parsing api
 A light api, based on Flask.
+
 Parses given uri, collects it's data and pack it to an archive.
 Returns a uri to download the archive.
 
@@ -13,7 +14,7 @@ Returns the task's status or a uri to download task's result.
 
 /parsingapp/api/v1.0/tasks/ (via GET method) - returns all tasks, which are in database. 
 
-# Technologies used:
+# Technologies used
 - Flask
 - Beautiful soup
 - SQLite
