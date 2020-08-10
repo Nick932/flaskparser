@@ -23,7 +23,7 @@ Returns the task's status or a uri to download task's result.
 # Requirements
 - Python 3.5.2+
 - Linux OS (was tested on Ubuntu 16.04)
-(See 'requirements.txt' for more details)
+- See 'requirements.txt' for more details
 
 # To contribute
 There are no something special to join the project.
