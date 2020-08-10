@@ -12,12 +12,16 @@ Returns the id of the bound task.
 /parsingapp/api/v1.0/task/<task_id> (via GET method) - takes the id of the task.
 Returns the task's status or a uri to download task's result.
 
-/parsingapp/api/v1.0/tasks/ (via GET method) - returns all tasks, which are in database. 
+
+# Running
+0) PostgreSQL database must be prepared according to the Celery backend settings.
+1) In the directory with files, execute 'celery -A views.celery worker' command in the shell's window
+2) Then in a separate window, execute 'python run.py'
 
 # Technologies used
 - Flask
 - Beautiful soup
-- SQLite
+- PostgreSQL
 - Celery
 
 # Requirements
