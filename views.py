@@ -3,17 +3,12 @@ from tools import status
 import dbtables
 import celery_settings
 from celery_tasks import scrapping
-from flask_app_settings import parsapp
+from flask_app_settings import parsapp, ARCHIVE_DIR, ARCHIVE_TYPE
 import sys, os
 
 db = dbtables.scrappy_database
 
 celery = celery_settings.celery
-
-FILE_TYPE = 'txt'
-FILE_DIR = 'files1'
-ARCHIVE_DIR = 'archives1'
-ARCHIVE_TYPE = 'zip'
 
 
 
@@ -60,12 +55,7 @@ def create_task(url_to_parse):
     if not url_to_parse:
         abort(400)
     
-    task = scrapping.apply_async(args=(
-                                    url_to_parse, 
-                                    ARCHIVE_TYPE, 
-                                    ARCHIVE_DIR, 
-                                    FILE_TYPE, 
-                                    FILE_DIR,))
+    task = scrapping.apply_async(args=(url_to_parse,))
     id = task.id
     return jsonify({'task_id': id}), 201
 

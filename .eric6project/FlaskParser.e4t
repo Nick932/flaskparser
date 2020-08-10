@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-5.1.dtd">
 <!-- eric6 tasks file for project FlaskParser -->
-<!-- Saved: 2020-08-10, 16:35:02 -->
+<!-- Saved: 2020-08-10, 20:50:10 -->
 <Tasks version="5.1">
   <ProjectScanFilter></ProjectScanFilter>
-  <Task priority="1" completed="False" type="3">
-    <Summary>NOTE: client mustn't know that quotes should be used?</Summary>
-    <Description></Description>
-    <Created>2020-08-10, 00:25:22</Created>
-    <Resource>
-      <Filename>parsingapp.py</Filename>
-      <Linenumber>41</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="1">
-    <Summary>TODO: LOGGING!</Summary>
-    <Description></Description>
-    <Created>2020-08-10, 00:25:22</Created>
-    <Resource>
-      <Filename>parsingapp.py</Filename>
-      <Linenumber>48</Linenumber>
-    </Resource>
-  </Task>
   <Task priority="1" completed="False" type="1">
     <Summary>TODO: LOGGING!</Summary>
     <Description></Description>
@@ -79,10 +61,28 @@
   <Task priority="1" completed="False" type="3">
     <Summary>NOTE: client mustn't know that quotes should be used?</Summary>
     <Description></Description>
-    <Created>2020-08-10, 16:34:59</Created>
+    <Created>2020-08-10, 20:11:30</Created>
+    <Resource>
+      <Filename>views.py</Filename>
+      <Linenumber>25</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="1">
+    <Summary>TODO: LOGGING!</Summary>
+    <Description></Description>
+    <Created>2020-08-10, 20:11:30</Created>
+    <Resource>
+      <Filename>views.py</Filename>
+      <Linenumber>32</Linenumber>
+    </Resource>
+  </Task>
+  <Task priority="1" completed="False" type="3">
+    <Summary>NOTE: client mustn't know that quotes should be used?</Summary>
+    <Description></Description>
+    <Created>2020-08-10, 20:50:08</Created>
     <Resource>
       <Filename>celery_tasks.py</Filename>
-      <Linenumber>38</Linenumber>
+      <Linenumber>34</Linenumber>
     </Resource>
   </Task>
 </Tasks>

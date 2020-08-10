@@ -60,27 +60,19 @@ class ArchiveCreator:
 
 
 
-class Scrapper:
-    ''' A simple interface of a scrapper.'''
-
-    def __init__(self):
-        
-        self.data = None
-
-
-    def collect_data(self, uri:str):
-        '''
-        Collects data from a given uri.
-        
-        Expecting 1 argument:
-        uri (str) - uri to scrapp.
-        
-        Returns the result of scrapping.
-        '''
-        page_response = requests.get(uri, timeout=5)
-        page_content = BeautifulSoup(page_response.content, "html.parser")
-        self.data = page_content.find_all()
-        return self.data
+def scrapper(uri:str):
+    '''
+    Collects data from a given uri.
+    
+    Expecting 1 argument:
+    uri (str) - uri to scrapp.
+    
+    Returns the result of scrapping.
+    '''
+    page_response = requests.get(uri, timeout=5)
+    page_content = BeautifulSoup(page_response.content, "html.parser")
+    data = page_content.find_all()
+    return data
 
 
 

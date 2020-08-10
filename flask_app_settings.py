@@ -1,6 +1,11 @@
 from flask import Flask
 
 
+FILE_TYPE = 'txt'
+FILE_DIR = 'files1'
+ARCHIVE_DIR = 'archives1'
+ARCHIVE_TYPE = 'zip'
+
 
 parsapp = Flask(__name__)
 
