@@ -47,17 +47,19 @@ class ArchiveCreator:
         path_to_file = os.path.split(full_file_path)[0]
         file_name = os.path.split(full_file_path)[1]
         archive_file = archive_name+'.'+self.archive_type
-        
+        #TODO: LOGGING! print(os.getcwd())
         os.chdir(self.archive_folder) # We create the archive in necessary folder...
         data_archive = zipfile.ZipFile(archive_file, 'w')
- 
+        #TODO: LOGGING! print(os.getcwd())
         os.chdir(path_to_file) # ... then we go to the file's folder, to pack the
         # file to the archive:
+        #TODO: LOGGING! print(os.getcwd())
+        #TODO: LOGGING! print(file_name)
         data_archive.write(file_name, compress_type = zipfile.ZIP_DEFLATED)
         data_archive.close()
-
+        #TODO: LOGGING! print(os.getcwd())
         os.chdir(cwd) # Now let's go back to the original directory. 
-
+        #TODO: LOGGING! print(os.getcwd())
 
 
 def scrapper(uri:str):
@@ -95,7 +97,7 @@ class DataWriter:
         except FileExistsError:
             pass
         self.path = cwd+file_folder+os.sep
-        self.filetype = '.'+file_type
+        self.filetype = file_type
 
 
     def write(self, data:str, filename:str):
