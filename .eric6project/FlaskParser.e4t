@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Tasks SYSTEM "Tasks-5.1.dtd">
 <!-- eric6 tasks file for project FlaskParser -->
-<!-- Saved: 2020-08-10, 00:55:07 -->
+<!-- Saved: 2020-08-10, 16:35:02 -->
 <Tasks version="5.1">
   <ProjectScanFilter></ProjectScanFilter>
   <Task priority="1" completed="False" type="3">
@@ -79,19 +79,10 @@
   <Task priority="1" completed="False" type="3">
     <Summary>NOTE: client mustn't know that quotes should be used?</Summary>
     <Description></Description>
-    <Created>2020-08-10, 00:40:59</Created>
+    <Created>2020-08-10, 16:34:59</Created>
     <Resource>
       <Filename>celery_tasks.py</Filename>
-      <Linenumber>29</Linenumber>
-    </Resource>
-  </Task>
-  <Task priority="1" completed="False" type="0">
-    <Summary>FIXME: problem with archive content.</Summary>
-    <Description></Description>
-    <Created>2020-08-10, 00:55:04</Created>
-    <Resource>
-      <Filename>tools.py</Filename>
-      <Linenumber>33</Linenumber>
+      <Linenumber>38</Linenumber>
     </Resource>
   </Task>
 </Tasks>

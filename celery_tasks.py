@@ -7,12 +7,20 @@ import os
 @celery.task
 def scrapping(uri:str, archive_type:str, archive_folder:str, file_type:str, file_folder:str ):
     '''
-    Меняет статус задачи в БД на 'in process'.
+    Changes the task's status in the database to 'in process'.
     
-    Собирает данные из uri.
-    Сохраняет данные в файл, а затем упаковывает его в архив.
+    Parses data from uri.
+    Saves data to a file, then pack it to an archive.
     
-    Меняет статус задачи в БД.    
+    Changes the task's status to 'Done'.    
+    
+    Takes 5 arguments:
+    
+    uri (str) - a uri to parse.
+    archive_type (str) - a type of archive file.
+    archive_folder (str) - a folder name for archive in the current working directory.
+    file_type (str) - a type of file with the parsing data.
+    file_folder (str) - a folder name for files in the current working directory.
     '''
     
     my_id = scrapping.request.id
@@ -24,7 +32,8 @@ def scrapping(uri:str, archive_type:str, archive_folder:str, file_type:str, file
     writer.write(data, my_id)
     
     archivator = ArchiveCreator(archive_folder = archive_folder, archive_type = archive_type)
-    archivator.pack(os.getcwd()+os.sep+file_folder+os.sep+my_id+'.'+file_type, my_id)
+    file_path = os.path.join(os.getcwd(), file_folder, my_id+'.'+file_type)
+    archivator.pack(file_path, my_id)
     
     where_clause = 'id="{0}"'.format(my_id) #NOTE: client mustn't know that quotes should be used?
     db.update('scrapping_data', 'status', status.done.value, where_clause)
