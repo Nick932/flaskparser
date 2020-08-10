@@ -1,5 +1,4 @@
 from celery import Celery
-import os
 from flask_app_settings import parsapp
 
 

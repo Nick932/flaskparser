@@ -1,12 +1,10 @@
 from flask import jsonify, abort, make_response, send_file,  url_for
-from tools import status
-import dbtables
 import celery_settings
 from celery_tasks import scrapping
 from flask_app_settings import parsapp, ARCHIVE_DIR, ARCHIVE_TYPE
-import sys, os
+import os
 
-db = dbtables.scrappy_database
+
 
 celery = celery_settings.celery
 
@@ -15,33 +13,17 @@ celery = celery_settings.celery
 @parsapp.route('/parsingapp/api/v1.0/task/<string:task_id>', methods = ['GET'])
 def get_task(task_id):
     '''
-    Returns task with designated id.
-    
     Checks if the task done or not.
+    
     If done: returns uri to download archive with the task's results.
     If not: returns the task's status.
     '''
-    
-    where_cl = 'id = "%s"' % task_id #NOTE: client mustn't know that quotes should be used?
-    
-    try:
-        task_attrs = db.select(table_name = 'scrapping_data',
-                               where_clause = where_cl
-                               )[0]
-    except Exception:
-        print(sys.exc_info()) #TODO: LOGGING!
-        task_attrs = None
 
-    if not task_attrs:
-        abort(404)
-        
-    task_status = task_attrs[2]
-    if task_status == status.done.value:
-        name = task_id
-        url = url_for('download', filename = name, _external = True)
+    if scrapping.AsyncResult(task_id).ready():
+        url = url_for('download', filename = task_id, _external = True)
         return jsonify({'url_to_download': url})
     else:
-        return jsonify({'task_status':task_status})
+        return jsonify({'task_status':'In progress'})
 
 
 

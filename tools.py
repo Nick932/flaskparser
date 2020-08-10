@@ -2,16 +2,6 @@ import zipfile
 import os
 from bs4 import BeautifulSoup
 import requests
-import enum
-
-
-
-@enum.unique
-class Status(enum.Enum):
-    done = 'Done'
-    in_progress = 'In progress'
-
-status = Status
 
 
 
